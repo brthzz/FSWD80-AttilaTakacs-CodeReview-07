@@ -1,0 +1,43 @@
+
+<div class="row">
+        <div class="col-md-5">
+                <form [formGroup]="this.destinationsService.form" (ngSubmit)="onSubmit()">
+                        <input type="hidden" formControlName="$key">
+                        <div class="form-group">
+                                <label>Picture</label>
+                           
+                                <input formControlName="picture" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.picture.errors}">
+                             
+                                <div class="invalid-feedback" *ngIf="submitted && formControls.picture.errors">This field is required</div>
+                        </div>
+
+                        <div class="form-group">
+                                <label>Location</label>
+                                
+                                <input formControlName="location" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.location.errors}">
+                                <div class="invalid-feedback" *ngIf="submitted && formControls.location.errors">invalid location...</div>
+                        </div>
+
+                        <div class="form-group">
+                                <label>Date</label>
+                                <input formControlName="date" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.date.errors}">
+                                <div class="invalid-feedback" *ngIf="submitted && formControls.date.errors">
+                                This field is required</div>
+                        </div>
+
+                        <div class="form-group">
+                                <label>Price</label>
+                                <input maxlength="4" formControlName="price" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.price.errors}">
+                                <div class="invalid-feedback" *ngIf="submitted && formControls.price.errors"><label *ngIf="formControls.price.errors.required">This field is required</label>
+                                        <label *ngIf="formControls.price.errors.minlength">at least 3 digits</label></div>
+                        </div>
+
+                        <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="Submit">
+                        </div>
+                </form>
+        </div>
+        <div class="col-md-7">
+                <app-destinations-list></app-destinations-list>
+        </div>
+</div>

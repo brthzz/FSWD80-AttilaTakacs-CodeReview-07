@@ -1,0 +1,20 @@
+<table class="table table-sm">
+        <thead>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Price</th>
+                <th></th>
+        </thead>
+        <ng-container *ngFor="let customer of customerArray">
+                <tr class="table-dark">
+                        <td><img src="{{destination.picture}}" alt=""></td>
+                        <td>{{destination.location}}</td>
+                        <td>{{destination.date}}</td>
+                        <td>{{destination.price}}</td>
+                        <td>
+                                <button class="btn btn-info">Edit</button>
+                                <button class="btn btn-danger">Delete</button>
+                        </td>
+                </tr>
+        </ng-container>
+</table>

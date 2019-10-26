@@ -1,0 +1,7 @@
+.jumbotron {
+	margin: 0;
+	background: url('/assets/wellness.jpg') 90% 90%;
+	background-size: cover;
+	height: 300px;
+}
+
