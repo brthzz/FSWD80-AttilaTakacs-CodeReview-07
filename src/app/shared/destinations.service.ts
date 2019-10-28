@@ -6,7 +6,7 @@ import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
   providedIn: 'root'
 })
 export class DestinationsService {
- 
+
 constructor(private firebase: AngularFireDatabase) { }
     
     destinationList: AngularFireList<any>;
@@ -19,21 +19,45 @@ constructor(private firebase: AngularFireDatabase) { }
   	price: new FormControl('', [Validators.required, Validators.minLength(3)])
          });
 
-    getDestinations(){
-                 this.destinationList = this.firebase.list('destinations');
-                 return this.destinationList.snapshotChanges();
+getDestinations(){
+      this.destinationList = this.firebase.list('destinations');
+      return this.destinationList.snapshotChanges();
          }
 
 
-	insertDestination(destination){
-                 this.destinationList.push({
-                 	picture: destination.picture,
-                    location: destination.location,
-                    date: destination.date,
-                    price: destination.price
+insertDestination(destination){
+    this.destinationList.push({
+        picture: destination.picture,
+        location: destination.location,
+        date: destination.date,
+        price: destination.price
                   });
          }
 
-}
 
-// ADD VALIDATORS.REQUIRED SO THE USER MUST FILL THE FORM
+updateCustomer(destination){
+    this.destinationList.update(destination.$key,{
+      picture: destination.picture,
+      location: destination.location,
+      date: destination.date,
+      price: destination.price
+    });
+  }
+
+populateForm(destination){
+    this.form.setValue(destination);
+  }
+
+deleteDestination($key: string){
+    this.destinationList.remove($key);
+  }
+
+updateDestination(destination){
+    this.destinationList.update(destination.$key,{
+      picture: destination.picture,
+      location: destination.location,
+      date: destination.date,
+      price: destination.price
+    });
+  }
+}

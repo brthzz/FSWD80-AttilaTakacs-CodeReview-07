@@ -20,7 +20,7 @@
 
                         <div class="form-group">
                                 <label>Date</label>
-                                <input formControlName="date" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.date.errors}">
+                                <input type="date" formControlName="date" class="form-control" [ngClass]="{'is-invalid':submitted && formControls.date.errors}">
                                 <div class="invalid-feedback" *ngIf="submitted && formControls.date.errors">
                                 This field is required</div>
                         </div>

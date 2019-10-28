@@ -8,10 +8,13 @@ import { DestinationsService } from '../shared/destinations.service';
 })
 export class DestinationsListComponent implements OnInit {
  placesArray =[];
-constructor(private destinationService: DestinationsService) { }
+ showDeletedMessage : boolean;
+ searchText:string = "";
+
+constructor(private destinationsService: DestinationsService) { }
 
 ngOnInit() {
-         this.destinationService.getDestinations().subscribe(
+         this.destinationsService.getDestinations().subscribe(
                  (list) => {
                          this.placesArray = list.map( (item) => {
                                 return {
@@ -22,5 +25,17 @@ ngOnInit() {
                  });
 
 }
+
+onDelete($key){
+     if(confirm("Are you sure you want to delete this record?")){
+       this.destinationsService.deleteDestination($key);
+       this.showDeletedMessage = true;
+       setTimeout(()=> this.showDeletedMessage=false , 3000)
+       }
+   }
+
+filterCondition(destination){
+     return destination.location.toLowerCase().indexOf(this.searchText.toLowerCase()) != -1 ;
+   }
 
 }

@@ -1,20 +1,20 @@
-<table class="table table-sm">
-        <thead>
-                <th>Location</th>
-                <th>Date</th>
-                <th>Price</th>
-                <th></th>
-        </thead>
-        <ng-container *ngFor="let customer of customerArray">
-                <tr class="table-dark">
-                        <td><img src="{{destination.picture}}" alt=""></td>
-                        <td>{{destination.location}}</td>
-                        <td>{{destination.date}}</td>
-                        <td>{{destination.price}}</td>
-                        <td>
-                                <button class="btn btn-info">Edit</button>
-                                <button class="btn btn-danger">Delete</button>
-                        </td>
-                </tr>
-        </ng-container>
-</table>
+<!-- <form class="form-inline">
+        <input name="searchInput" class="form-control" placeholder="Search" #searchInput="ngModel" [(ngModel)]="searchText" style="width: 80%;">
+        <button class="btn btn-outline-primary" (click)="searchText=''">x</button>
+</form> -->
+<div class="card" style="width: 18rem;">
+<ng-container *ngFor="let destination of placesArray">
+  <img src="{{destination.picture}}" class="card-img-top" alt="...">
+  <div class="card-body" *ngIf="filterCondition(destination)">
+    <p class="card-text">Location: {{destination.location}}</p>
+    <p class="card-text">Date: {{destination.date}}</p>
+    <p class="card-text">Price: {{destination.price}}</p>
+    <button class="btn btn-info" (click)="destinationsService.populateForm(destination)">Edit</button>
+    <button class="btn btn-danger" (click)="onDelete(destination.$key)">Delete</button>
+  </div> 
+</ng-container>
+</div>
+
+<div class="alert alert-danger" *ngIf="showDeletedMessage">Deleted successfully</div>
+
+
